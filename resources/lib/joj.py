@@ -249,14 +249,14 @@ class JojContentProvider(ContentProvider):
         if url.endswith('live.html'):
             channel = urlparse.urlparse(url).netloc.split('.')[0]
             if channel in 'plus':
-                channel = 'jojplus'
+                channel = 'plus'
             channel_quality_map = {'joj': ('360', '540', '720'),
-                                   'jojplus': ('360', '540'),
+                                   'plus': ('360', '540'),
                                    'wau': ('360', '540')}
             for quality in channel_quality_map[channel]:
                 item = self.video_item()
                 item['quality'] = quality + 'p'
-                item['url'] = 'https://nn.geo.joj.sk/live/hls/' + channel + '-' + quality + '.m3u8'
+                item['url'] = 'https://nn.geo.joj.sk/live/andromeda/' + channel + '-' + quality + '.m3u8'
                 result.append(item)
         else:
             data = util.request(url)
